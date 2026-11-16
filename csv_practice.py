@@ -1,3 +1,11 @@
+# Lab 12 Reflection
+#
+#1. Excel makes it easier to see and edit data because everything is organized in a spreadsheet. Python is better for automating
+#repetitive tasks and processing large amounts of data without having to do everything manually.
+#
+#2. A business could use an append-mode log to track daily sales transactions. Each new entry would be added to the file without
+#deleting previous records, making it easier to review sales activity and keep a history of transactions.
+
 import csv
 
 #---Exercise 2: Read and print raw rows---
@@ -118,7 +126,7 @@ print("\nExercise 8: Sales Log")
 
 timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-with open("data/sales_log.txt", "a") as file:
+with open("data/run_log.txt", "a") as file:
     file.write(f"{timestamp} - Total Revenue: ${total_revenue:.2f}\n")
 
 print("Sales log updated successfully.")
