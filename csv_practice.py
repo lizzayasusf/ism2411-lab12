@@ -68,3 +68,57 @@ with open("data/sales.csv", "r", newline="") as infile:
 
 print(f"Original rows: {original_count}")
 print(f"Cleaned rows: {cleaned_count}")
+
+#---Exercise 6: csv.DictReader
+print("\nExercise 6: DictReader")
+
+dict_total_revenue = 0
+
+with open("data/sales.csv", "r", newline="") as file:
+    reader = csv.DictReader(file)
+
+    for row in reader:
+        product = row["product"]
+        price = float(row["price"])
+        quantity = int(row["quantity"])
+
+        total = price * quantity
+        dict_total_revenue += total
+
+        print(f"{product}: {quantity} units x ${price:.2f} = ${total:.2f}")
+
+print(f"\nTotal Revenue (DictReader): ${dict_total_revenue:.2f}")
+
+#---Exercise 7: Sales summary by product---
+print("\nExercise 7: Sales Summary by Product")
+
+sales_summary = {}
+
+with open("data/sales.csv", "r", newline="") as file:
+    reader = csv.DictReader(file)
+
+    for row in reader:
+        product = row["product"]
+        price = float(row["price"])
+        quantity = int(row["quantity"])
+        total = price * quantity
+
+        if product in sales_summary:
+            sales_summary[product] += total
+        else:
+            sales_summary[product] = total
+
+for product in sorted(sales_summary):
+    print(f"{product}: ${sales_summary[product]:.2f}")
+
+#---Exercise 8: Append to a log file---
+from datetime import datetime
+
+print("\nExercise 8: Sales Log")
+
+timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+with open("data/sales_log.txt", "a") as file:
+    file.write(f"{timestamp} - Total Revenue: ${total_revenue:.2f}\n")
+
+print("Sales log updated successfully.")
